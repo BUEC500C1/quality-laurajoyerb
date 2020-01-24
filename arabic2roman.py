@@ -5,15 +5,12 @@
     # https://www.geeksforgeeks.org/converting-decimal-number-lying-between-1-to-3999-to-roman-numerals/
     # https://www.101computing.net/number-only/
 
-def arabic2roman():
-    while True:
-        try:
-            arabic = int(input("Enter an Arabic numeral: "))
-        except ValueError:
-            print("Please enter a valid Arabic numeral (1, 2, 3, etc)")
-            continue
-        else:
-            break
+def arabic2roman(arabic_num):
+    try:
+        arabic = int(arabic_num)
+    except ValueError:
+        print("Invalid arabic numeral. Please enter an integer value (1, 2, 3, etc)")
+        return ''
 
     # TODO: add checking for range of integers
 
@@ -23,17 +20,13 @@ def arabic2roman():
     i = len(decimal)
     i -= 1
 
+    rom_numeral = ''
+
     while arabic > 0:
         rem = arabic // decimal[i]
         arabic = arabic % decimal[i]
         while rem > 0:
             rem -= 1
-            print(romans[i], end = "")
+            rom_numeral += romans[i]
         i -= 1
-    print()
-    return 3
-
-def test_arabic2roman():
-    assert arabic2roman() == 3
-
-arabic2roman()
+    return rom_numeral
